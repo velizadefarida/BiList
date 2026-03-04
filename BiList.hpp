@@ -85,3 +85,19 @@ size_t traverse(BiList<T>* fake, Func func) {
     }
     return count;
 }
+
+template<typename T>
+BiList<T>* convert(const T arr[], size_t size) {
+    BiList<T>* fake = createList<T>();
+    for (size_t i = 0; i < size; ++i) add(fake, arr[i]);
+    return fake;
+}
+
+template<typename T>
+BiList<T>* destroyList(BiList<T>* fake) {
+    clear(fake);
+    ::operator delete(fake);
+    return nullptr;
+}
+
+#endif
