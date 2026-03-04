@@ -1,5 +1,5 @@
 #include "BiList.hpp"
-#include "functions.hpp"
+#include "function.hpp"
 #include <iostream>
 
 int main()
