@@ -37,3 +37,25 @@ BiList<T>* insert(BiList<T>* node, const T& value) {
     if (nextNode) nextNode->prev = newNode;
     return newNode;
 }
+
+template<typename T>
+BiList<T>* erase(BiList<T>* fake, BiList<T>* node) {
+    if (!node || node == fake) return nullptr;
+    BiList<T>* prev = node->prev;
+    BiList<T>* next = node->next;
+    prev->next = next;
+    if (next) next->prev = prev;
+    delete node;
+    return next;
+}
+
+template<typename T>
+BiList<T>* cut(BiList<T>* fake, BiList<T>* node) {
+    if (!node || node == fake) return nullptr;
+    BiList<T>* prev = node->prev;
+    BiList<T>* next = node->next;
+    prev->next = next;
+    if (next) next->prev = prev;
+    node->next = node->prev = nullptr;
+    return node;
+}
