@@ -59,3 +59,29 @@ BiList<T>* cut(BiList<T>* fake, BiList<T>* node) {
     node->next = node->prev = nullptr;
     return node;
 }
+
+template<typename T>
+size_t clear(BiList<T>* fake) {
+    size_t count = 0;
+    BiList<T>* curr = fake->next;
+    while (curr) {
+        BiList<T>* next = curr->next;
+        delete curr;
+        curr = next;
+        ++count;
+    }
+    fake->next = nullptr;
+    return count;
+}
+
+template<typename T, typename Func>
+size_t traverse(BiList<T>* fake, Func func) {
+    size_t count = 0;
+    BiList<T>* curr = fake->next;
+    while (curr) {
+        func(curr->data);
+        curr = curr->next;
+        ++count;
+    }
+    return count;
+}
